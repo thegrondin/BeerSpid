@@ -1,0 +1,15 @@
+{
+    "name": "beerspid/website",
+    "authors": [
+        {
+            "name": "Thomas Dion-Grondin",
+            "email": "thomas@eckinox.ca"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Website\\": "./"
+        }
+    },
+    "require": {}
+}
