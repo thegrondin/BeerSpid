@@ -1,8 +1,10 @@
 <?php
 
+namespace Website\Libs\BeerSpid\Libs;
+
 class Config {
 
-    public static string $baseDir = "/config/"
+    public static $baseDir = "/config/";
 
     public static function get(string $filename) {
         $path = __BEER_SPID_BASE_PATH__ . self::$baseDir;

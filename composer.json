@@ -11,5 +11,7 @@
             "Website\\": "./"
         }
     },
-    "require": {}
+    "require": {
+      "ext-json": "*"
+    }
 }

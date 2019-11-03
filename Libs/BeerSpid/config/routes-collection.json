@@ -1,0 +1,30 @@
+[
+  {
+    "name": "quote-route-collection",
+    "controller": "QuoteController",
+    "routes" : [
+      {
+        "name": "list-rentals",
+        "method": "rentals",
+        "path": "/quote/rentals/"
+      },
+      {
+        "name": "get-rental",
+        "method": "getRental",
+        "path": "quote/rentals/get/{rental_id}",
+        "requirements": "DECIMAL"
+      }
+    ]
+  },
+  {
+    "name": "requisition-route-collection",
+    "controller": "RequisitionController",
+    "routes": [
+      {
+        "name": "list-requisitions",
+        "method": "requisitions",
+        "path": "/requisitions"
+      }
+    ]
+  }
+]
