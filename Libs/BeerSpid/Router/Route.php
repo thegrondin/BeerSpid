@@ -7,53 +7,64 @@ use \Website\Libs\BeerSpid\Router\Contracts\IRoute;
 
 class Route implements IRoute {
 
+	private $name;
+	private $method;
+	private $path;
+	private $parentName;
+	private $controller;
+
     public function getName(): string
     {
-        // TODO: Implement getName() method.
+        return $this->name;
     }
 
     public function getMethod(): string
     {
-        // TODO: Implement getMethod() method.
+        return $this->method;
     }
 
     public function getPath(): string
-    {
-        // TODO: Implement getPath() method.
+	{
+		return $this->path;
     }
 
     public function getParentName(): string
     {
-        // TODO: Implement getParentName() method.
+        return $this->parentName;
     }
 
     public function getController(): IController
     {
-        // TODO: Implement getController() method.
+        return $this->controller;
     }
 
     public function setName(string $name): IRoute
     {
-        // TODO: Implement setName() method.
+        $this->name = $name;
+		return $this;
     }
 
     public function setMethod(string $method): IRoute
     {
-        // TODO: Implement setMethod() method.
+        $this->method = $method;
+		return $this;
     }
 
     public function setPath(string $path): IRoute
     {
-        // TODO: Implement setPath() method.
+        $this->path = $path;
+		return $this;
     }
 
     public function setParentName(string $parentName): IRoute
     {
-        // TODO: Implement setParentName() method.
+        $this->parentName = $parentName;
+		return $this;
     }
 
     public function setController(IController $controller): IRoute
     {
-        // TODO: Implement setController() method.
+        $this->controller = $controller;
+		return $this;
     }
 }

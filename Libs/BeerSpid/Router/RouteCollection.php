@@ -15,7 +15,7 @@ class RouteCollection implements IRouteCollection {
 
     public function add(IRoute $route)
     {
-        array_push($routes, $route);
+        array_push($this->routes, $route);
     }
 
     public function remove(IRoute $route)

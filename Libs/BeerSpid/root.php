@@ -1,13 +1,17 @@
 <?php
 
-use Website\Libs\BeerSpid\Bootstrapper\Boostrap;
+namespace Website\Libs\BeerSpid;
+
+use Website\Libs\BeerSpid\Bootstrapper\Bootstrap;
 use Website\Libs\BeerSpid\Libs\Config;
 
-$bootstrap = new Boostrap();
-$bootstrap->initializeConstants(Config::get('environment-variables.json'), __DIR__);
+define('__BEER_SPID_BASE_PATH__', __DIR__);
+
+$bootstrap = new Bootstrap();
+$bootstrap->initializeConstants(Config::get('environment-variables.json'));
 $bootstrap->registerRessources(Config::get('dependencies.json'));
 $bootstrap->initializeRoutes(Config::get('routes-collection.json'));
-$bootstrap->start();
+//$bootstrap->start();
 
 
 

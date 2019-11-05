@@ -1,8 +1,18 @@
-{
-    [
-        "class": "////",
-        "namespace": "////",
-        "arguments": ["test", 34]
-    ],
-    []
-}
+[
+    {
+        "class": "Website\\Libs\\BeerSpid\\Router\\Router",
+        "interface": "Website\\Libs\\BeerSpid\\Router\\Contracts\\IRouter",
+        "parameters": []
+    },
+    {
+        "class": "Website\\Libs\\BeerSpid\\Router\\RouteCollection",
+        "interface": "Website\\Libs\\BeerSpid\\Router\\Contracts\\IRouteCollection",
+        "parameters": []
+    },
+    {
+        "class": "Website\\Libs\\BeerSpid\\Router\\Route",
+        "interface": "Website\\Libs\\BeerSpid\\Router\\Contracts\\IRoute",
+        "parameters": []
+    }
+]
+

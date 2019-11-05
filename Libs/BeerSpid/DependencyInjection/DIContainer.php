@@ -1,5 +1,8 @@
 <?php
+
+
 namespace Website\Libs\BeerSpid\DependencyInjection;
+
 
 class DIContainer {
 
@@ -13,20 +16,17 @@ class DIContainer {
     }
 
     public function getInstance($interface) {
-        $targetedRessource = array_filter($this->ressources, function($ressource) use ($interface) {
+        $targetedRessource = array_filter($this->ressources, function(DIRessource $ressource) use ($interface) {
+
             return $ressource->getInterface() === $interface;
-        })[0];
+        });
 
-        $obj = null;
-        if (count($targetedRessource->getParameters()) == 0) {
-            $obj = new $targetedRessource->getPointer();
-        }
-        else {
-            $reflectionClass = new \ReflectionClass($targetedRessource->getPointer());
-            $obj = $reflectionClass->newInstanceArgs($targetedRessource->getParameters());
-        }
+		$targetedRessource = end($targetedRessource);
 
-        return $obj;
+		$reflectionClass = new \ReflectionClass($targetedRessource->getPointer());
+		return $reflectionClass->newInstanceArgs($targetedRessource->getParameters());
+
+
 
     }
 

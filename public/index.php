@@ -1,13 +1,8 @@
 <?php
 
-namespace Website;
 
-use Website\Libs\BeerSpid\TestClass;
-use Website\Libs\BeerSpid\ITestClass;
-use Website\Libs\BeerSpid\DependencyInjection\DIContainer;
-use Website\Libs\BeerSpid\DependencyInjection\DIRessource;
 
-require_once "../vendor/autoload.php";
+
 require_once "../index.php";
 /*$container = new DIContainer();
 

@@ -4,13 +4,12 @@ namespace Website\Libs\BeerSpid\Bootstrapper;
 
 use Website\Libs\BeerSpid\DependencyInjection\DIContainer;
 use Website\Libs\BeerSpid\DependencyInjection\DIRessource;
-use Website\Libs\BeerSpid\Router\contracts\IRouteCollection;
-use Website\Libs\BeerSpid\Router\contracts\IRouter;
-use Website\Libs\BeerSpid\Router\contracts\IRoute;
-
+use Website\Libs\BeerSpid\Router\Contracts\IRouteCollection;
+use Website\Libs\BeerSpid\Router\Contracts\IRouter;
+use Website\Libs\BeerSpid\Router\Contracts\IRoute;
 use Website\Libs\BeerSpid\Bootstrapper\Contracts\IBootstrap;
 
-class Boostrap implements IBootstrap {
+class Bootstrap implements IBootstrap {
 
     private $container;
     private $router;
@@ -21,8 +20,10 @@ class Boostrap implements IBootstrap {
         $this->ressourcesRegistered = false;
     }
 
-    public function initializeConstants($config, string $baseDir) {
-
+    public function initializeConstants($config) {
+    	foreach ($config as $constName => $constValue) {
+    		define($constName, $constValue);
+		}
     }
 
     public function initializeRoutes($collections = []) {
@@ -36,31 +37,36 @@ class Boostrap implements IBootstrap {
         foreach ($collections as $collection) {
             $routeCollection = $this->container->getInstance(IRouteCollection::class);
 
-            $routeCollection->setName($collection['name']);
-            $routeCollection->setController($collection['controller']);
+            $routeCollection->setName($collection->name);
+            $routeCollection->setController($collection->controller);
 
-            foreach ($collection['routes'] as $route) {
-                $routeEntity = $this->container->getInstanceWithOverrideParameters(IRoute::class, [
-                    'name' => $route['name'],
-                    'method' => $route['method'],
-                    'path' => $route['path']
-                ]);
+            foreach ($collection->routes as $route) {
+                $routeEntity = $this->container->getInstance(IRoute::class);
+
+				$routeEntity
+					->setName($route->name)
+					->setMethod($route->method)
+					->setPath($route->path)
+					->setParentName($collection->name);
 
                 $routeCollection->add($routeEntity);
             }
 
             $this->router->addCollection($routeCollection);
+
         }
 
         $this->router->setDIContainer($this->container);
+		var_dump($this->router);
     }
 
-    public function registerRessources($config = [], array $additionalRessources = null) {
+    public function registerRessources($config = [], array $additionalRessources = []) {
 
-        $ressources = array_merge(json_decode($config, $additionalRessources));
+    	$ressources = array_merge($config, $additionalRessources);
 
         foreach ($ressources as $dependency) {
-            $this->container->register((DIRessource::default($dependency['interface'], $dependency['class'], $dependency['parameters'])));
+
+            $this->container->register((DIRessource::default($dependency->interface, $dependency->class, $dependency->parameters)));
         }
 
         $this->ressourcesRegistered = true;

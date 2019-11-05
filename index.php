@@ -1,4 +1,9 @@
 <?php
 
-define("ROOT_PROJECT_DIR", __DIR__);
-var_dump(ROOT_PROJECT_DIR);
+namespace Website;
+
+
+
+require_once "vendor/autoload.php";
+
+require_once "Libs/BeerSpid/root.php";
