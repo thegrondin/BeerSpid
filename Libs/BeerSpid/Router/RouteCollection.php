@@ -82,4 +82,8 @@ class RouteCollection implements IRouteCollection {
     {
         $this->controller = $controller;
     }
+
+    public function getRoutes() {
+        return $this->routes;
+    }
 }

@@ -1,0 +1,27 @@
+# To handle a single name/value pair in the query string:
+
+#RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+index\.php\?([^&=]+)=([^&\ ]+)(\ |$) [NC]
+#RewriteRule ^ /%1\/%2? [R=301,L]
+
+# To handle 2:
+
+#RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+index\.php\?([^&=]+)=([^&\ ]+)&([^&=]+)=([^&\ ]+)(\ |$) [NC]
+#RewriteRule ^ /%1\/%2/%3/%4? [R=301,L]
+
+# To handle 3:
+
+#RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+index\.php\?([^&=]+)=([^&\ ]+)&([^&=]+)=([^&\ ]+)&([^&=]+)=([^&\ ]+)(\ |$) [NC]
+#RewriteRule ^ /%1\/%2/%3/%4/%5/%6? [R=301,L]
+
+<IfModule mod_rewrite.c>
+    Options -MultiViews
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    <IfModule mod_alias.c>
+        RedirectMatch 302 ^/$ /index.php/
+    </IfModule>
+</IfModule>

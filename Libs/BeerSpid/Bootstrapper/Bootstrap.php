@@ -9,7 +9,7 @@ use Website\Libs\BeerSpid\Router\Contracts\IRouter;
 use Website\Libs\BeerSpid\Router\Contracts\IRoute;
 use Website\Libs\BeerSpid\Bootstrapper\Contracts\IBootstrap;
 
-class Bootstrap implements IBootstrap {
+class Bootstrap {
 
     private $container;
     private $router;
@@ -57,7 +57,6 @@ class Bootstrap implements IBootstrap {
         }
 
         $this->router->setDIContainer($this->container);
-		var_dump($this->router);
     }
 
     public function registerRessources($config = [], array $additionalRessources = []) {
