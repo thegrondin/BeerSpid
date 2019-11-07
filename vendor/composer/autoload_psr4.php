@@ -6,5 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'mindplay\\annotations\\' => array($vendorDir . '/mindplay/annotations/src/annotations'),
     'Website\\' => array($baseDir . '/'),
 );

@@ -33,7 +33,7 @@ class Route implements IRoute {
         return $this->parentName;
     }
 
-    public function getController(): IController
+    public function getController(): string
     {
         return $this->controller;
     }
@@ -62,7 +62,7 @@ class Route implements IRoute {
 		return $this;
     }
 
-    public function setController(IController $controller): IRoute
+    public function setController(string $controller): IRoute
     {
         $this->controller = $controller;
 		return $this;

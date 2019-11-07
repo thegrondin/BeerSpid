@@ -1,0 +1,30 @@
+{
+  "name": "demo-route-collection",
+  "controller": "DemoController",
+  "routes" : [
+    {
+      "name": "index-route",
+      "method": "index",
+      "path": "/home/index/",
+      "type": ["GET"]
+    },
+    {
+      "name": "about-route",
+      "method": "about",
+      "path": "/home/about",
+      "type": ["GET"]
+    },
+    {
+      "name": "contact-route",
+      "method": "contact",
+      "path": "/home/contact",
+      "type": ["GET"]
+    },
+    {
+      "name": "subscribe-route",
+      "method": "subscribe",
+      "path": "/home/subscribe",
+      "type": ["POST"]
+    }
+  ]
+}

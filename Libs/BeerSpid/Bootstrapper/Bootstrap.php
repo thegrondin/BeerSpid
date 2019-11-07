@@ -4,6 +4,8 @@ namespace Website\Libs\BeerSpid\Bootstrapper;
 
 use Website\Libs\BeerSpid\DependencyInjection\DIContainer;
 use Website\Libs\BeerSpid\DependencyInjection\DIRessource;
+use Website\Libs\BeerSpid\Libs\Directory;
+use Website\Libs\BeerSpid\Libs\File;
 use Website\Libs\BeerSpid\Router\Contracts\IRouteCollection;
 use Website\Libs\BeerSpid\Router\Contracts\IRouter;
 use Website\Libs\BeerSpid\Router\Contracts\IRoute;
@@ -26,17 +28,19 @@ class Bootstrap {
 		}
     }
 
-    public function initializeRoutes($collections = []) {
+    public function initializeRoutes($directory) {
 
         $this->router = $this->container->getInstance(IRouter::class);
 
-        if (!$this->ressourcesRegistered) {
-            return;
+        $files = Directory::getFiles($directory);
+        $collections = [];
+
+        foreach ($files as $index => $file) {
+            array_push($collections, File::parseToJson(File::getContent($file)));
         }
 
         foreach ($collections as $collection) {
             $routeCollection = $this->container->getInstance(IRouteCollection::class);
-
             $routeCollection->setName($collection->name);
             $routeCollection->setController($collection->controller);
 
@@ -47,7 +51,8 @@ class Bootstrap {
 					->setName($route->name)
 					->setMethod($route->method)
 					->setPath($route->path)
-					->setParentName($collection->name);
+					->setParentName($collection->name)
+                    ->setController($collection->controller);
 
                 $routeCollection->add($routeEntity);
             }

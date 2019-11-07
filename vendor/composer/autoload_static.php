@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInit286071297c5a8b2b122b6732e8e669e5
 {
     public static $prefixLengthsPsr4 = array (
+        'm' => 
+        array (
+            'mindplay\\annotations\\' => 21,
+        ),
         'W' => 
         array (
             'Website\\' => 8,
@@ -14,6 +18,10 @@ class ComposerStaticInit286071297c5a8b2b122b6732e8e669e5
     );
 
     public static $prefixDirsPsr4 = array (
+        'mindplay\\annotations\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mindplay/annotations/src/annotations',
+        ),
         'Website\\' => 
         array (
             0 => __DIR__ . '/../..' . '/',

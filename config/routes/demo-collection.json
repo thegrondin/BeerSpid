@@ -1,0 +1,26 @@
+{
+  "name": "demo-route-collection",
+  "controller": "DemoController",
+  "routes" : [
+    {
+      "name": "index-route",
+      "method": "index",
+      "path": "/demo/index/",
+      "type": ["GET"]
+    },
+    {
+      "name": "test-route",
+      "method": "test",
+      "path": "/demo/test/{id}",
+      "requirements": "DECIMAL",
+      "type": ["GET"]
+    },
+    {
+      "name": "save-route",
+      "method": "save",
+      "path": "/demo/save/{id}",
+      "requirements": "DECIMAL",
+      "type": ["POST"]
+    }
+  ]
+}

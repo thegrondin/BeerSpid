@@ -4,6 +4,7 @@ namespace Website\Libs\BeerSpid;
 
 use Website\Libs\BeerSpid\Bootstrapper\Bootstrap;
 use Website\Libs\BeerSpid\Libs\Config;
+use Website\Libs\BeerSpid\Libs\Path;
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -13,7 +14,7 @@ define('__BEER_SPID_BASE_PATH__', __DIR__);
 $bootstrap = new Bootstrap();
 $bootstrap->initializeConstants(Config::get('environment-variables.json'));
 $bootstrap->registerRessources(Config::get('dependencies.json'));
-$bootstrap->initializeRoutes(Config::get('routes-collection.json'));
+$bootstrap->initializeRoutes(Path::normalize(Path::getStatic(ROUTES_DIR)));
 $bootstrap->start();
 
 

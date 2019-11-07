@@ -13,6 +13,16 @@
         "class": "Website\\Libs\\BeerSpid\\Router\\Route",
         "interface": "Website\\Libs\\BeerSpid\\Router\\Contracts\\IRoute",
         "parameters": []
+    },
+    {
+        "class": "Website\\App\\Controllers\\DemoController",
+        "interface": "Website\\Libs\\BeerSpid\\Controller\\Contracts\\IController",
+        "parameters": []
+    },
+    {
+        "class": "Website\\App\\Controllers\\HomeController",
+        "interface": "Website\\Libs\\BeerSpid\\Controller\\Contracts\\IController",
+        "parameters": []
     }
 ]
 

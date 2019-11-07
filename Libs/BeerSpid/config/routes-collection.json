@@ -6,13 +6,15 @@
       {
         "name": "list-rentals",
         "method": "rentals",
-        "path": "/quote/rentals/"
+        "path": "/quote/rentals/",
+        "type": ["GET", "POST", "PUT"]
       },
       {
         "name": "get-rental",
         "method": "getRental",
         "path": "quote/rentals/get/{rental_id}",
-        "requirements": "DECIMAL"
+        "requirements": "DECIMAL",
+        "type": ["GET"]
       }
     ]
   },
@@ -23,7 +25,8 @@
       {
         "name": "list-requisitions",
         "method": "requisitions",
-        "path": "/requisitions"
+        "path": "/requisitions",
+        "type": "ALL"
       }
     ]
   }

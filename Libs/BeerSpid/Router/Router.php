@@ -2,7 +2,9 @@
 
 namespace Website\Libs\BeerSpid\Router;
 
+use ReflectionClass;
 use Website\Libs\BeerSpid\DependencyInjection\DIContainer;
+use Website\Libs\BeerSpid\Libs\Path;
 use Website\Libs\BeerSpid\Router\Contracts\IRouter;
 use Website\Libs\BeerSpid\Router\Contracts\IRouteCollection;
 use Website\Libs\BeerSpid\Libs\Url;
@@ -27,6 +29,13 @@ class Router implements IRouter {
         }
 
         if ($this->toDispath) {
+
+            $controllerExist = file_exists(
+                Path::getNormalizedStatic(CONTROLLERS_DIR . $this->toDispath->getController()));
+
+            if ($controllerExist) {
+                $controller = new ReflectionClass('Core\Singleton');
+            }
             dump($this->toDispath);
         }
     }
