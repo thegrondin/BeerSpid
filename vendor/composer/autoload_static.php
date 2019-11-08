@@ -13,7 +13,12 @@ class ComposerStaticInit286071297c5a8b2b122b6732e8e669e5
         ),
         'W' => 
         array (
+            'Whoops\\' => 7,
             'Website\\' => 8,
+        ),
+        'P' => 
+        array (
+            'Psr\\Log\\' => 8,
         ),
     );
 
@@ -22,9 +27,17 @@ class ComposerStaticInit286071297c5a8b2b122b6732e8e669e5
         array (
             0 => __DIR__ . '/..' . '/mindplay/annotations/src/annotations',
         ),
+        'Whoops\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/filp/whoops/src/Whoops',
+        ),
         'Website\\' => 
         array (
             0 => __DIR__ . '/../..' . '/',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
     );
 

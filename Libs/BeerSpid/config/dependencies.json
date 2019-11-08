@@ -15,13 +15,13 @@
         "parameters": []
     },
     {
-        "class": "Website\\App\\Controllers\\DemoController",
-        "interface": "Website\\Libs\\BeerSpid\\Controller\\Contracts\\IController",
+        "class": "Website\\src\\Controllers\\DemoController",
+        "interface": "Website\\src\\Controllers\\DemoController",
         "parameters": []
     },
     {
-        "class": "Website\\App\\Controllers\\HomeController",
-        "interface": "Website\\Libs\\BeerSpid\\Controller\\Contracts\\IController",
+        "class": "Website\\src\\Controllers\\HomeController",
+        "interface": "Website\\src\\Controllers\\HomeController",
         "parameters": []
     }
 ]

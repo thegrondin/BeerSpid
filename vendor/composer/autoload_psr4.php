@@ -7,5 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'mindplay\\annotations\\' => array($vendorDir . '/mindplay/annotations/src/annotations'),
+    'Whoops\\' => array($vendorDir . '/filp/whoops/src/Whoops'),
     'Website\\' => array($baseDir . '/'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
 );

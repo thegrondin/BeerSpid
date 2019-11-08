@@ -5,7 +5,10 @@ namespace Website\Libs\BeerSpid\Router;
 use ReflectionClass;
 use Website\Libs\BeerSpid\DependencyInjection\DIContainer;
 use Website\Libs\BeerSpid\Libs\Path;
+use Website\Libs\BeerSpid\Request\Contracts\IRequest;
+use Website\Libs\BeerSpid\Request\Contracts\IRequestBuilder;
 use Website\Libs\BeerSpid\Router\Contracts\IRouter;
+use Website\Libs\BeerSpid\Router\Contracts\IRoute;
 use Website\Libs\BeerSpid\Router\Contracts\IRouteCollection;
 use Website\Libs\BeerSpid\Libs\Url;
 
@@ -15,6 +18,10 @@ class Router implements IRouter {
 	private $routesCollections = [];
 
 	private $toDispath;
+
+	function __construct(IRoute $route, string $test) {
+
+	}
 
     public function dispatch(string $path)
     {
@@ -30,13 +37,32 @@ class Router implements IRouter {
 
         if ($this->toDispath) {
 
-            $controllerExist = file_exists(
-                Path::getNormalizedStatic(CONTROLLERS_DIR . $this->toDispath->getController()));
-
-            if ($controllerExist) {
-                $controller = new ReflectionClass('Core\Singleton');
-            }
             dump($this->toDispath);
+
+            $requestBuilder = $this->container->getInstance(IRequestBuilder::class);
+
+            $request = null;
+            if ($requestBuilder instanceof IRequestBuilder) {
+                $request = $requestBuilder->create($this->toDispath);
+            }
+
+            if ($request instanceof IRequest) {
+                $request->handleDispatch();
+            }
+
+
+            /*if (!in_array(Request::getType(), $this->toDispath->getTypes())) {
+                return;
+            }
+
+
+
+
+            $controller = $this->container->getInstance($this->toDispath->getController());
+
+            $method = $this->toDispath->getMethod();
+
+            $controller->$method();*/
         }
     }
 

@@ -1,6 +1,6 @@
 {
-  "name": "demo-route-collection",
-  "controller": "DemoController",
+  "name": "demo",
+  "controller": "Website\\src\\Controllers\\DemoController",
   "routes" : [
     {
       "name": "index-route",

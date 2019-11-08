@@ -12,6 +12,7 @@ class Route implements IRoute {
 	private $path;
 	private $parentName;
 	private $controller;
+	private $types = [];
 
     public function getName(): string
     {
@@ -66,5 +67,16 @@ class Route implements IRoute {
     {
         $this->controller = $controller;
 		return $this;
+    }
+
+    public function getTypes(): array
+    {
+        return $this->types;
+    }
+
+    public function setTypes(array $types): IRoute
+    {
+        $this->types = $types;
+        return $this;
     }
 }

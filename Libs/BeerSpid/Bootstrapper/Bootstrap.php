@@ -31,6 +31,7 @@ class Bootstrap {
     public function initializeRoutes($directory) {
 
         $this->router = $this->container->getInstance(IRouter::class);
+        die();
 
         $files = Directory::getFiles($directory);
         $collections = [];
@@ -52,7 +53,8 @@ class Bootstrap {
 					->setMethod($route->method)
 					->setPath($route->path)
 					->setParentName($collection->name)
-                    ->setController($collection->controller);
+                    ->setController($collection->controller)
+                    ->setTypes($route->type);
 
                 $routeCollection->add($routeEntity);
             }

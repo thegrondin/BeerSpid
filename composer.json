@@ -13,6 +13,7 @@
     },
     "require": {
       "ext-json": "*",
-        "mindplay/annotations": "^1.3"
+        "mindplay/annotations": "^1.3",
+        "filp/whoops": "^2.5"
     }
 }

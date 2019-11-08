@@ -10,12 +10,13 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+
 define('__BEER_SPID_BASE_PATH__', __DIR__);
 $bootstrap = new Bootstrap();
 $bootstrap->initializeConstants(Config::get('environment-variables.json'));
 $bootstrap->registerRessources(Config::get('dependencies.json'));
 $bootstrap->initializeRoutes(Path::normalize(Path::getStatic(ROUTES_DIR)));
-$bootstrap->start();
+//$bootstrap->start();
 
 
 
