@@ -14,13 +14,14 @@ use Website\Libs\BeerSpid\Libs\Url;
 
 class Router implements IRouter {
 
+	/** @var DIContainer */
 	private $container;
 	private $routesCollections = [];
 
 	private $toDispath;
 
-	function __construct(IRoute $route, string $test) {
-
+	function __construct(IRoute $route, IRouteCollection $collection, string $test, int $foo, bool $bar, int $test2, $noType) {
+		dump($route, $collection, $test, $foo, $bar, $test2, $noType);
 	}
 
     public function dispatch(string $path)
@@ -29,7 +30,7 @@ class Router implements IRouter {
 
         foreach ($this->routesCollections as $collection) {
             foreach ($collection->getRoutes() as $route) {
-                if ($path === $route->getPath()) {
+                if ($path === ((object) $route)->getPath()) {
                     $this->toDispath = $route;
                 }
             }
@@ -39,16 +40,10 @@ class Router implements IRouter {
 
             dump($this->toDispath);
 
-            $requestBuilder = $this->container->getInstance(IRequestBuilder::class);
+            $requestBuilder = (object) $this->container->getInstance(IRequestBuilder::class);
+			$request = (object) $requestBuilder->create($this->toDispath);
 
-            $request = null;
-            if ($requestBuilder instanceof IRequestBuilder) {
-                $request = $requestBuilder->create($this->toDispath);
-            }
-
-            if ($request instanceof IRequest) {
-                $request->handleDispatch();
-            }
+			$request->handleDispatch();
 
 
             /*if (!in_array(Request::getType(), $this->toDispath->getTypes())) {
@@ -68,7 +63,7 @@ class Router implements IRouter {
 
     public function addCollection(IRouteCollection $collection)
     {
-        array_push($this->routesCollections, $collection);
+    	$this->routesCollections[] = $collection;
     }
 
     public function setDIContainer(DIContainer $container)

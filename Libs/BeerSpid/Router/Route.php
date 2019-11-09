@@ -4,6 +4,7 @@ namespace Website\Libs\BeerSpid\Router;
 
 use Website\Libs\BeerSpid\Router\Contracts\IController;
 use \Website\Libs\BeerSpid\Router\Contracts\IRoute;
+use Website\Libs\BeerSpid\Router\Contracts\IRouteCollection;
 
 class Route implements IRoute {
 
@@ -14,7 +15,9 @@ class Route implements IRoute {
 	private $controller;
 	private $types = [];
 
-    public function getName(): string
+	function __construct() {  }
+
+	public function getName(): string
     {
         return $this->name;
     }

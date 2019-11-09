@@ -2,7 +2,7 @@
     {
         "class": "Website\\Libs\\BeerSpid\\Router\\Router",
         "interface": "Website\\Libs\\BeerSpid\\Router\\Contracts\\IRouter",
-        "parameters": []
+        "parameters": ["redefinedTest", 42, true]
     },
     {
         "class": "Website\\Libs\\BeerSpid\\Router\\RouteCollection",

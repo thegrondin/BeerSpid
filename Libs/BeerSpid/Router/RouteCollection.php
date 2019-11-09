@@ -13,7 +13,9 @@ class RouteCollection implements IRouteCollection {
     private $name;
     private $controller;
 
-    public function add(IRoute $route)
+    function __construct() { }
+
+	public function add(IRoute $route)
     {
         array_push($this->routes, $route);
     }

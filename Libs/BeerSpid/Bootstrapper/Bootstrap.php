@@ -13,7 +13,13 @@ use Website\Libs\BeerSpid\Bootstrapper\Contracts\IBootstrap;
 
 class Bootstrap {
 
+	/*
+	 *
+	 */
     private $container;
+    /*
+     * @var $IRouter
+     */
     private $router;
     private $ressourcesRegistered;
 
@@ -30,23 +36,24 @@ class Bootstrap {
 
     public function initializeRoutes($directory) {
 
-        $this->router = $this->container->getInstance(IRouter::class);
+        $this->router = (object) $this->container->getInstance(IRouter::class);
         die();
 
         $files = Directory::getFiles($directory);
         $collections = [];
 
         foreach ($files as $index => $file) {
-            array_push($collections, File::parseToJson(File::getContent($file)));
+
+            $collection[] = File::parseToJson(File::getContent($file));
         }
 
         foreach ($collections as $collection) {
-            $routeCollection = $this->container->getInstance(IRouteCollection::class);
+            $routeCollection = (object) $this->container->getInstance(IRouteCollection::class);
             $routeCollection->setName($collection->name);
             $routeCollection->setController($collection->controller);
 
             foreach ($collection->routes as $route) {
-                $routeEntity = $this->container->getInstance(IRoute::class);
+                $routeEntity = (object) $this->container->getInstance(IRoute::class);
 
 				$routeEntity
 					->setName($route->name)

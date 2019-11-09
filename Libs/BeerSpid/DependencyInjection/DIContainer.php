@@ -4,7 +4,6 @@
 namespace Website\Libs\BeerSpid\DependencyInjection;
 
 
-use mysql_xdevapi\Exception;
 use ReflectionClass;
 use Symfony\Component\Debug\Exception\ClassNotFoundException;
 
@@ -18,7 +17,7 @@ class DIContainer {
     }
 
     public function register(DIRessource $ressource) {
-        array_push($this->ressources, $ressource);
+        $this->ressources[] = $ressource;
     }
 
     public function getInstance($interface, array $override = []) {
@@ -27,36 +26,84 @@ class DIContainer {
             return $ressource->getInterface() === $interface;
         });
 
-    if (!$targetedRessource) {
-      $_ENV["ERROR_VARS"] = $this->ressources;
-      throw new \Exception('The reference to ' . $interface . ' do not seem to be registered');
-    }
+		if (!$targetedRessource) {
+	  		throw new \Exception('The reference to ' . $interface . ' do not seem to be registered');
+		}
 
 		$targetedRessource = end($targetedRessource);
 
-		$reflectionClass = new ReflectionClass($targetedRessource->getPointer());
+    	return $this->autoWire($targetedRessource);
 
-    return $this->autoWire($reflectionClass);
-
-		//return $reflectionClass->newInstanceArgs($targetedRessource->getParameters());
     }
 
-    protected function autoWire(ReflectionClass $class) {
-      if ($class->isInstantiable()) {
-        $constructor = $class->getConstructor();
+    protected function autoWire(DIRessource $targetedRessource) {
 
-        foreach ($constructor->getParameters() as $param) {
-          if ($param->getClass()) {
-            $instance = $this->getInstance($param->getClass());
-            $this->autoWire($instance);
+    	if (!class_exists($targetedRessource->getPointer())) {
+			throw new \Exception('Unable to find class ' . $targetedRessource->getPointer() . '.');
+		}
+    	$class = new ReflectionClass($targetedRessource->getPointer());
 
-          }
-        }
+		if ($class->isInstantiable()) {
+			$constructor = $class->getConstructor();
 
-        dump(get_class_methods($constructor->getParameters()[0]));
-        dump($constructor->getParameters()[1]->getClass());
-      }
+			$classParameters = [];
+			$autoWiredIndex = 0;
+			foreach ($constructor->getParameters() as $index => $param) {
+
+				$instanceParam = null;
+
+				if (!$param->getClass() && isset($targetedRessource->getParameters()[$index - $autoWiredIndex])) {
+					$configParam = $targetedRessource->getParameters()[$index - $autoWiredIndex];
+
+					if ($this->getNormalizedType($configParam) === $param->getType()->getName()) {
+						$instanceParam = $targetedRessource->getParameters()[$index - $autoWiredIndex];
+					}
+				}
+
+				if ($param->getType() && !$param->getClass()) {
+
+					settype($instanceParam, $param->getType()->getName());
+				}
+
+				if ($param->getClass()) {
+					$instanceParam = $this->getInstance($param->getClass()->getName());
+					$autoWiredIndex++;
+				}
+
+				$classParameters[] = $instanceParam;
+
+			}
+
+			return $class->newInstanceArgs($classParameters);
+
+		}
     }
 
+    protected function getNormalizedType($var) {
 
+    	$type = gettype($var);
+
+    	$returnType = null;
+    	switch ($type) {
+			case Types::INT:
+			case Types::INTEGER:
+				$type = 'int';
+				break;
+			case Types::BOOL:
+			case Types::BOOLEAN:
+				$type = 'bool';
+				break;
+		}
+
+		return $type;
+	}
+
+}
+
+
+class Types {
+	const INTEGER = 'integer';
+	const BOOLEAN = 'boolean';
+	const INT = 'int';
+	const BOOL = 'bool';
 }

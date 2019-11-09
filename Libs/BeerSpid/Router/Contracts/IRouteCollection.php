@@ -3,7 +3,10 @@
 namespace Website\Libs\BeerSpid\Router\Contracts;
 
 interface IRouteCollection {
-    public function getName(): string;
+
+	function __construct();
+
+	public function getName(): string;
     public function getController(): string;
     public function setName(string $name);
     public function setController(string $controller);

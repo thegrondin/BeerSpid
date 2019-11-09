@@ -3,7 +3,9 @@
 namespace Website\Libs\BeerSpid\Router\Contracts;
 
 interface IRoute {
-    public function getName() : string;
+	function __construct() ;
+
+	public function getName() : string;
     public function getMethod(): string;
     public function getPath(): string;
     public function getParentName(): string;
