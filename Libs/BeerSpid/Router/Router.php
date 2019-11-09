@@ -20,15 +20,17 @@ class Router implements IRouter {
 
 	private $toDispath;
 
-	function __construct(IRoute $route, IRouteCollection $collection, string $test, int $foo, bool $bar, int $test2, $noType) {
-		dump($route, $collection, $test, $foo, $bar, $test2, $noType);
+	function __construct() {
+
 	}
 
     public function dispatch(string $path)
     {
+
         $path = Url::toPretty($path);
 
         foreach ($this->routesCollections as $collection) {
+
             foreach ($collection->getRoutes() as $route) {
                 if ($path === ((object) $route)->getPath()) {
                     $this->toDispath = $route;
@@ -38,7 +40,6 @@ class Router implements IRouter {
 
         if ($this->toDispath) {
 
-            dump($this->toDispath);
 
             $requestBuilder = (object) $this->container->getInstance(IRequestBuilder::class);
 			$request = (object) $requestBuilder->create($this->toDispath);

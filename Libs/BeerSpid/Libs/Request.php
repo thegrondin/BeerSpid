@@ -28,7 +28,8 @@ class Request implements IRequest {
 
     public function handleDispatch()
     {
-        // TODO: Implement handleDispatch() method.
+		dump($this);
+
     }
 
 

@@ -37,17 +37,17 @@ class Bootstrap {
     public function initializeRoutes($directory) {
 
         $this->router = (object) $this->container->getInstance(IRouter::class);
-        die();
 
         $files = Directory::getFiles($directory);
         $collections = [];
 
         foreach ($files as $index => $file) {
 
-            $collection[] = File::parseToJson(File::getContent($file));
+            $collections[] = File::parseToJson(File::getContent($file));
         }
 
         foreach ($collections as $collection) {
+
             $routeCollection = (object) $this->container->getInstance(IRouteCollection::class);
             $routeCollection->setName($collection->name);
             $routeCollection->setController($collection->controller);
@@ -71,6 +71,7 @@ class Bootstrap {
         }
 
         $this->router->setDIContainer($this->container);
+
     }
 
     public function registerRessources($config = [], array $additionalRessources = []) {

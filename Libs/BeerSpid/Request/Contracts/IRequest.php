@@ -2,7 +2,7 @@
 
 namespace Website\Libs\BeerSpid\Request\Contracts;
 
-use Website\Libs\BeerSpid\Router\Contracts\Iroute;
+use Website\Libs\BeerSpid\Router\Contracts\IRoute;
 
 interface IRequest {
 

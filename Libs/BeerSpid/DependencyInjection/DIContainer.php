@@ -18,19 +18,27 @@ class DIContainer {
 
     public function register(DIRessource $ressource) {
         $this->ressources[] = $ressource;
+
     }
 
     public function getInstance($interface, array $override = []) {
+		$_ENV['ERROR_DEV'] = $this->ressources;
         $targetedRessource = array_filter($this->ressources, function(DIRessource $ressource) use ($interface) {
 
             return $ressource->getInterface() === $interface;
         });
 
 		if (!$targetedRessource) {
+
 	  		throw new \Exception('The reference to ' . $interface . ' do not seem to be registered');
 		}
 
+
 		$targetedRessource = end($targetedRessource);
+
+		if (count($override)) {
+			$targetedRessource->setParameters($override);
+		}
 
     	return $this->autoWire($targetedRessource);
 
@@ -38,9 +46,14 @@ class DIContainer {
 
     protected function autoWire(DIRessource $targetedRessource) {
 
+    	if ($targetedRessource->getPointer() === self::class) {
+			return $this;
+		}
+
     	if (!class_exists($targetedRessource->getPointer())) {
 			throw new \Exception('Unable to find class ' . $targetedRessource->getPointer() . '.');
 		}
+
     	$class = new ReflectionClass($targetedRessource->getPointer());
 
 		if ($class->isInstantiable()) {

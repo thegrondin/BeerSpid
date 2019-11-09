@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Website\Libs\Request\Elements;
+namespace Website\Libs\BeerSpid\Request\Elements;
 
 
 use Website\Libs\BeerSpid\Request\Contracts\Elements\IElement;

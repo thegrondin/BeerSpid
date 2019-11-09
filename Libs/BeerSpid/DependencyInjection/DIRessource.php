@@ -38,4 +38,8 @@ class DIRessource {
     public function getParameters() : array {
         return $this->parameters;
     }
+
+    public function setParameters(array $parameters) {
+		$this->parameters = $parameters;
+	}
 }

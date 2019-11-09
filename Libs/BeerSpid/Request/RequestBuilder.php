@@ -7,8 +7,6 @@ use Website\Libs\BeerSpid\Request\Contracts\IParametersCollection;
 use Website\Libs\BeerSpid\Request\Contracts\IRequest;
 use Website\Libs\BeerSpid\Request\Contracts\IRequestBuilder;
 use Website\Libs\BeerSpid\Router\Contracts\IRoute;
-use Website\Libs\BeerSpid\Request\Contracts\Bags\IBag;
-use Website\Libs\Request\Bags\BagBuilder;
 
 class RequestBuilder implements IRequestBuilder {
 
@@ -22,10 +20,7 @@ class RequestBuilder implements IRequestBuilder {
 
     public function create(IRoute $route): IRequest
     {
-        $paramsCollection = $this->container->getInstance(IParametersCollection::class, [
-            "rawGetParams" => $_GET,
-            "rawPostParams" => $_POST
-        ]);
+        $paramsCollection = $this->container->getInstance(IParametersCollection::class, [$_GET, $_POST ]);
 
         return $this->request->setRoute($route)
             ->setMethod($_SERVER['REQUEST_METHOD'])

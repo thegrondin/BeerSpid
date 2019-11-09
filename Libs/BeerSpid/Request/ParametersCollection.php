@@ -1,13 +1,17 @@
 <?php
 
 
-namespace Website\Libs\Request;
+namespace Website\Libs\BeerSpid\Request;
 
 
-use Website\Libs\Request\Contracts\IParameter;
+use Website\Libs\BeerSpid\Request\Contracts\IParameter;
+use Website\Libs\BeerSpid\Request\Contracts\IParametersCollection;
 
-class ParametersCollection implements \IParametersCollection
+class ParametersCollection implements IParametersCollection
 {
+
+	protected $rawGet = [];
+	protected $rawPost = [];
 
     public function get(string $name): IParameter
     {
@@ -21,6 +25,8 @@ class ParametersCollection implements \IParametersCollection
 
     public function __construct(array $rawGetParams, array $rawPostParams)
     {
+    	$this->rawGet = $rawGetParams;
+    	$this->rawPost = $rawPostParams;
     }
 
     public function all(string $filter): array

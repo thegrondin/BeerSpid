@@ -23,6 +23,26 @@
         "class": "Website\\src\\Controllers\\HomeController",
         "interface": "Website\\src\\Controllers\\HomeController",
         "parameters": []
+    },
+    {
+        "class": "Website\\Libs\\BeerSpid\\Request\\RequestBuilder",
+        "interface": "Website\\Libs\\BeerSpid\\Request\\Contracts\\IRequestBuilder",
+        "parameters": []
+    },
+    {
+        "class": "Website\\Libs\\BeerSpid\\Libs\\Request",
+        "interface": "Website\\Libs\\BeerSpid\\Request\\Contracts\\IRequest",
+        "parameters": []
+    },
+    {
+        "class": "Website\\Libs\\BeerSpid\\DependencyInjection\\DIContainer",
+        "interface": "Website\\Libs\\BeerSpid\\DependencyInjection\\DIContainer",
+        "parameters": []
+    },
+    {
+        "class": "Website\\Libs\\BeerSpid\\Request\\ParametersCollection",
+        "interface": "Website\\Libs\\BeerSpid\\Request\\Contracts\\IParametersCollection",
+        "parameters": []
     }
 ]
 

@@ -16,7 +16,7 @@ $bootstrap = new Bootstrap();
 $bootstrap->initializeConstants(Config::get('environment-variables.json'));
 $bootstrap->registerRessources(Config::get('dependencies.json'));
 $bootstrap->initializeRoutes(Path::normalize(Path::getStatic(ROUTES_DIR)));
-//$bootstrap->start();
+$bootstrap->start();
 
 
 
