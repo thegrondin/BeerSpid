@@ -43,6 +43,16 @@
         "class": "Website\\Libs\\BeerSpid\\Request\\ParametersCollection",
         "interface": "Website\\Libs\\BeerSpid\\Request\\Contracts\\IParametersCollection",
         "parameters": []
+    },
+    {
+        "class": "Website\\Libs\\BeerSpid\\Request\\RequestValidator",
+        "interface": "Website\\Libs\\BeerSpid\\Request\\Contracts\\IRequestValidator",
+        "parameters": []
+    },
+    {
+        "class": "Website\\Libs\\BeerSpid\\Controller\\ControllerBuilder",
+        "interface": "Website\\Libs\\BeerSpid\\Controller\\Contracts\\IControllerBuilder",
+        "parameters": []
     }
 ]
 

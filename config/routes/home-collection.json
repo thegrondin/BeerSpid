@@ -11,19 +11,19 @@
     {
       "name": "about-route",
       "method": "about",
-      "path": "/home/about",
+      "path": "/home/abou/",
       "type": ["GET"]
     },
     {
       "name": "contact-route",
       "method": "contact",
-      "path": "/home/contact",
+      "path": "/home/contact/",
       "type": ["GET"]
     },
     {
       "name": "subscribe-route",
       "method": "subscribe",
-      "path": "/home/subscribe",
+      "path": "/home/subscribe/",
       "type": ["POST"]
     }
   ]

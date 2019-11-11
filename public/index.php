@@ -1,5 +1,4 @@
 <?php
-
 if (! function_exists('dump')) {
     function dump(...$what) {
         $stack = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);

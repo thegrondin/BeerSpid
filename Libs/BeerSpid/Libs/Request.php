@@ -5,6 +5,7 @@ namespace Website\Libs\BeerSpid\Libs;
 use Website\Libs\BeerSpid\Request\Contracts\Bags\IBag;
 use Website\Libs\BeerSpid\Request\Contracts\IParametersCollection;
 use Website\Libs\BeerSpid\Request\Contracts\IRequest;
+use Website\Libs\BeerSpid\Request\Contracts\IRequestValidator;
 use Website\Libs\BeerSpid\Router\Contracts\IRoute;
 
 class Request implements IRequest {
@@ -17,8 +18,13 @@ class Request implements IRequest {
     protected $server;
     protected $content;
 
-    function __construct()
+
+    protected $requestValidator;
+
+    function __construct(IRequestValidator $requestValidator)
     {
+
+        $this->requestValidator = new $requestValidator();
     }
 
 
@@ -26,10 +32,14 @@ class Request implements IRequest {
         return $_SERVER['REQUEST_METHOD'];
     }
 
-    public function handleDispatch()
+    public function isValid()
     {
-		dump($this);
 
+        if (!$this->requestValidator instanceof IRequestValidator) {
+            return new \Exception();
+        }
+
+		return $this->requestValidator->validate($this, $this->route);
     }
 
 
@@ -158,5 +168,7 @@ class Request implements IRequest {
         $this->content = $content;
         return $this;
     }
+
+
 
 }

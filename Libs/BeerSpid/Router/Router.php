@@ -3,6 +3,7 @@
 namespace Website\Libs\BeerSpid\Router;
 
 use ReflectionClass;
+use Website\Libs\BeerSpid\Controller\Contracts\IControllerBuilder;
 use Website\Libs\BeerSpid\DependencyInjection\DIContainer;
 use Website\Libs\BeerSpid\Libs\Path;
 use Website\Libs\BeerSpid\Request\Contracts\IRequest;
@@ -26,8 +27,7 @@ class Router implements IRouter {
 
     public function dispatch(string $path)
     {
-
-        $path = Url::toPretty($path);
+        $path = Url::parseUrl($path);
 
         foreach ($this->routesCollections as $collection) {
 
@@ -40,25 +40,16 @@ class Router implements IRouter {
 
         if ($this->toDispath) {
 
-
             $requestBuilder = (object) $this->container->getInstance(IRequestBuilder::class);
 			$request = (object) $requestBuilder->create($this->toDispath);
 
-			$request->handleDispatch();
-
-
-            /*if (!in_array(Request::getType(), $this->toDispath->getTypes())) {
-                return;
+			if (!$request->isValid()) {
+			    return;
             }
 
+			$controllerBuilder = (object) $this->container->getInstance(IControllerBuilder::class);
+			$controller = (object) $controllerBuilder->create($this->toDispath, $request);
 
-
-
-            $controller = $this->container->getInstance($this->toDispath->getController());
-
-            $method = $this->toDispath->getMethod();
-
-            $controller->$method();*/
         }
     }
 
