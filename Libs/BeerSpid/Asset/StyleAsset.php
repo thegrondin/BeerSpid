@@ -4,7 +4,14 @@
 namespace Website\Libs\BeerSpid\Asset;
 
 
-class StyleAsset
-{
+use Website\Libs\BeerSpid\Asset\Contracts\AssetTypes;
 
+class StyleAsset extends AbstractAsset
+{
+    protected const TYPE = AssetTypes::STYLE;
+
+    public function getPath()
+    {
+        // TODO: Implement getPath() method.
+    }
 }

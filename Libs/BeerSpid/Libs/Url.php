@@ -14,10 +14,10 @@ class Url {
     }*/
 
     public static function parseUrl(string $url) {
-
-    	$path = (strpos($url, '?') !== false ? explode('?', $url, 2) : (array) $url)[0];
-    	$path = substr($path, - 1) !== '/' ? $path . '/' : $path;
-
-		return $path;
+        return (strpos($url, '?') !== false ? explode('?', $url, 2) : (array) $url)[0];
 	}
+
+	public static function normalize(string $url) {
+        return substr($url, - 1) !== '/' ? $url . '/' : $url;
+    }
 }

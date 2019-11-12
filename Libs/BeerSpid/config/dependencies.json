@@ -53,6 +53,11 @@
         "class": "Website\\Libs\\BeerSpid\\Controller\\ControllerBuilder",
         "interface": "Website\\Libs\\BeerSpid\\Controller\\Contracts\\IControllerBuilder",
         "parameters": []
+    },
+    {
+        "class": "Website\\Libs\\BeerSpid\\Asset\\AssetManager",
+        "interface": "Website\\Libs\\BeerSpid\\Asset\\Contracts\\IAssetManager",
+        "parameters": []
     }
 ]
 

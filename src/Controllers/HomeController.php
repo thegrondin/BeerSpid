@@ -16,7 +16,7 @@ class HomeController extends ControllerBase {
     }
 
     public function index(IRequest $request) {
-        dump($request);
+        //dump($request);
         echo "<html><body style='font-family: arial;'><h1>Home Controller <br />Index page</h1></body></html>";
 
         return $this->render('/home/index', [$request]);

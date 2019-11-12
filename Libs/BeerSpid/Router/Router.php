@@ -27,7 +27,7 @@ class Router implements IRouter {
 
     public function dispatch(string $path)
     {
-        $path = Url::parseUrl($path);
+        $path = Url::normalize(Url::parseUrl($path));
 
         foreach ($this->routesCollections as $collection) {
 

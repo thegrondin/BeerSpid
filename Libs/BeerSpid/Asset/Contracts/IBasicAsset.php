@@ -4,7 +4,10 @@
 namespace Website\Libs\BeerSpid\Asset\Contracts;
 
 
-class IBasicAsset
+interface IBasicAsset
 {
+    public function getPath();
+
+    public function getType();
 
 }

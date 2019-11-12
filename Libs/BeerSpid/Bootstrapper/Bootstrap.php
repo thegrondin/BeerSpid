@@ -2,6 +2,7 @@
 
 namespace Website\Libs\BeerSpid\Bootstrapper;
 
+use Website\Libs\BeerSpid\Asset\Contracts\IAssetManager;
 use Website\Libs\BeerSpid\DependencyInjection\DIContainer;
 use Website\Libs\BeerSpid\DependencyInjection\DIRessource;
 use Website\Libs\BeerSpid\Libs\Directory;
@@ -87,6 +88,15 @@ class Bootstrap {
     }
 
     public function start() {
-        $this->router->dispatch($_SERVER["REQUEST_URI"]);
+
+        $requestUri = $_SERVER["REQUEST_URI"];
+
+        $assetManager = $this->container->getInstance(IAssetManager::class);
+
+        if ($assetManager->exists($requestUri)) {
+            return $assetManager->handle($requestUri);
+        }
+
+        return $this->router->dispatch($requestUri);
     }
 }

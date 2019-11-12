@@ -4,7 +4,14 @@
 namespace Website\Libs\BeerSpid\Asset;
 
 
-class MediaAsset
-{
+use Website\Libs\BeerSpid\Asset\Contracts\AssetTypes;
 
+class MediaAsset extends AbstractAsset
+{
+    protected const TYPE = AssetTypes::MEDIA;
+
+    public function getPath()
+    {
+        // TODO: Implement getPath() method.
+    }
 }
