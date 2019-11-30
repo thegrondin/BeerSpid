@@ -56,10 +56,19 @@ class Bootstrap {
             foreach ($collection->routes as $route) {
                 $routeEntity = (object) $this->container->getInstance(IRoute::class);
 
+                preg_match_all('/[^{\}]+(?=})/', $route->path, $output);
+
+                if (count($output[0]) > 0) {
+                    $routeEntity->setParameters($output[0]);
+                    $routeEntity->setPath(substr($route->path, 0, strpos($route->path, '{')));
+                }
+                else {
+                    $routeEntity->setPath($route->path);
+                }
+
 				$routeEntity
 					->setName($route->name)
 					->setMethod($route->method)
-					->setPath($route->path)
 					->setParentName($collection->name)
                     ->setController($collection->controller)
                     ->setTypes($route->type);

@@ -2,6 +2,7 @@
 
 namespace Website\Libs\BeerSpid\Controller;
 
+use ReflectionMethod;
 use Website\Libs\BeerSpid\Controller\Contracts\IController;
 use Website\Libs\BeerSpid\Controller\Contracts\IControllerBuilder;
 use Website\Libs\BeerSpid\DependencyInjection\DIContainer;
@@ -22,7 +23,7 @@ class ControllerBuilder implements IControllerBuilder {
 
         $method = $route->getMethod();
 
-        $controller->$method($request);
+        $controller->$method($request, ...array_values($route->getParameters()));
 
         return $controller;
     }

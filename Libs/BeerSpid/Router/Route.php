@@ -14,6 +14,7 @@ class Route implements IRoute {
 	private $parentName;
 	private $controller;
 	private $types = [];
+    private $parameters = [];
 
 	function __construct() {  }
 
@@ -80,6 +81,35 @@ class Route implements IRoute {
     public function setTypes(array $types): IRoute
     {
         $this->types = $types;
+        return $this;
+    }
+
+    public function getParameters() : array  {
+        return $this->parameters;
+    }
+
+    public function setParameters(array $parameters) : IRoute {
+        $this->parameters = $parameters;
+        return $this;
+    }
+
+    public function setParameterValue($infos, $value) : IRoute {
+        $index = array_search($infos, $this->parameters);
+
+        if ($index !== false) {
+
+            list($name, $type) = explode('|', $infos);
+
+            $result = null;
+
+            if (settype($value, $type)) {
+                $result = $value;
+            }
+
+            $this->parameters[$name] = $value;
+            unset($this->parameters[$index]);
+        }
+
         return $this;
     }
 }

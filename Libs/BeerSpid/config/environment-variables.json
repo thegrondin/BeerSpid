@@ -3,5 +3,6 @@
   "CONTROLLERS_DIR": "src/Controllers",
   "PUBLIC_DIR": "src/public",
   "ASSET_DIR": "src/public/assets",
-  "ASSET_URI": "/assets/"
+  "ASSET_URI": "/assets/",
+  "VIEW_PATH": "templates\\Views"
 }

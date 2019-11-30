@@ -13,14 +13,18 @@ class ParametersCollection implements IParametersCollection
 	protected $rawGet = [];
 	protected $rawPost = [];
 
-    public function get(string $name): IParameter
+    public function get(string $name)
     {
-        // TODO: Implement get() method.
+        if (isset($this->rawGet[$name])) {
+            return $this->rawGet[$name];
+        }
     }
 
-    public function post(string $name): IParameter
+    public function post(string $name)
     {
-        // TODO: Implement post() method.
+        if (isset($this->rawPost[$name])) {
+            return $this->rawPost[$name];
+        }
     }
 
     public function __construct(array $rawGetParams, array $rawPostParams)
@@ -29,8 +33,25 @@ class ParametersCollection implements IParametersCollection
     	$this->rawPost = $rawPostParams;
     }
 
-    public function all(string $filter): array
+    public function all(string $filter = HttpMethodTypes::ALL): array
     {
-        // TODO: Implement all() method.
+        switch ($filter) {
+            case HttpMethodTypes::GET:
+                return $this->rawGet;
+            case HttpMethodTypes::POST:
+                return $this->rawPost;
+            case HttpMethodTypes::ALL:
+                return [
+                    "gets" => $this->rawGet,
+                    "posts" => $this->rawPost
+                ];
+        }
     }
+
+}
+
+class HttpMethodTypes {
+    const GET = "GET";
+    const POST = "POST";
+    const ALL = "ALL";
 }

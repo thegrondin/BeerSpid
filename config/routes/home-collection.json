@@ -11,7 +11,7 @@
     {
       "name": "about-route",
       "method": "about",
-      "path": "/home/abou/",
+      "path": "/home/about/",
       "type": ["GET"]
     },
     {

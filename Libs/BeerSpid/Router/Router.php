@@ -30,10 +30,23 @@ class Router implements IRouter {
         $path = Url::normalize(Url::parseUrl($path));
 
         foreach ($this->routesCollections as $collection) {
-
             foreach ($collection->getRoutes() as $route) {
-                if ($path === ((object) $route)->getPath()) {
-                    $this->toDispath = $route;
+                if (strncasecmp($path, ((object) $route)->getPath(), strlen(((object) $route)->getPath())) === 0) {
+
+                    $routesParameters = explode('/', substr($path, strlen(((object) $route)->getPath()),  -1));
+
+                    if (count($routesParameters) === 1 && $routesParameters[0] === "") {
+                        array_pop($routesParameters);
+                    }
+
+                    if (count($route->getParameters()) === count($routesParameters)) {
+                        for ($i = 0; $i < count($routesParameters); $i ++) {
+                            $parameter = $route->getParameters()[$i];
+                            $route->setParameterValue($parameter, $routesParameters[$i]);
+                        }
+
+                        $this->toDispath = $route;
+                    }
                 }
             }
         }

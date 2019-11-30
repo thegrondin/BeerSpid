@@ -9,5 +9,10 @@ return array(
     'mindplay\\annotations\\' => array($vendorDir . '/mindplay/annotations/src/annotations'),
     'Whoops\\' => array($vendorDir . '/filp/whoops/src/Whoops'),
     'Website\\' => array($baseDir . '/'),
+    'Twig\\' => array($vendorDir . '/twig/twig/src'),
+    'Symfony\\Polyfill\\Php72\\' => array($vendorDir . '/symfony/polyfill-php72'),
+    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
+    'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
+    'Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
 );

@@ -58,6 +58,31 @@
         "class": "Website\\Libs\\BeerSpid\\Asset\\AssetManager",
         "interface": "Website\\Libs\\BeerSpid\\Asset\\Contracts\\IAssetManager",
         "parameters": []
+    },
+    {
+        "class": "Website\\Libs\\BeerSpid\\Views\\View",
+        "interface": "Website\\Libs\\BeerSpid\\Views\\Contracts\\IView",
+        "parameters": []
+    },
+    {
+        "class": "Website\\Libs\\BeerSpid\\Views\\ViewRenderer",
+        "interface": "Website\\Libs\\BeerSpid\\Views\\Contracts\\IViewRenderer",
+        "parameters": []
+    },
+    {
+        "class": "Twig\\Loader\\FilesystemLoader",
+        "interface": "Twig\\Loader\\LoaderInterface",
+        "parameters": []
+    },
+    {
+        "class": "Twig\\Environment",
+        "interface": "Twig\\Environment",
+        "parameters": []
+    },
+    {
+        "class": "Website\\Libs\\BeerSpid\\Controller\\ControllerBase",
+        "interface": "Website\\Libs\\BeerSpid\\Controller\\Contracts\\IController",
+        "parameters": []
     }
 ]
 

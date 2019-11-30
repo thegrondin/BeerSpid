@@ -4,11 +4,15 @@ namespace Website\src\Controllers;
 
 use Website\Libs\BeerSpid\Controller\ControllerBase;
 use Website\Libs\BeerSpid\Request\Contracts\IRequest;
+use Website\Libs\BeerSpid\Request\HttpMethodTypes;
+use Website\Libs\BeerSpid\Views\Contracts\IView;
+use Website\Libs\BeerSpid\Views\Contracts\IViewRenderer;
 
 class HomeController extends ControllerBase {
 
-    function __construct()
+    function __construct(IViewRenderer $viewRenderer, IView $view)
     {
+        parent::__construct($viewRenderer, $view);
     }
 
     public function about() {
@@ -16,10 +20,15 @@ class HomeController extends ControllerBase {
     }
 
     public function index(IRequest $request) {
-        //dump($request);
-        echo "<html><body style='font-family: arial;'><h1>Home Controller <br />Index page</h1></body></html>";
 
-        return $this->render('/home/index', [$request]);
+
+        $user = (object) [
+            "firstname" => "Thomas",
+            "lastname" => "Dion-Grondin",
+            "age" => 19
+        ];
+
+        return $this->render('/home/', 'index.html', ["user" => $user]);
     }
 
     public function contact(IRequest $request) {

@@ -68,7 +68,8 @@ class DIContainer {
 				if (!$param->getClass() && isset($targetedRessource->getParameters()[$index - $autoWiredIndex])) {
 					$configParam = $targetedRessource->getParameters()[$index - $autoWiredIndex];
 
-					if ($this->getNormalizedType($configParam) === $param->getType()->getName()) {
+
+					if (!$param->getType() || $this->getNormalizedType($configParam) === $param->getType()->getName()) {
 						$instanceParam = $targetedRessource->getParameters()[$index - $autoWiredIndex];
 					}
 				}
